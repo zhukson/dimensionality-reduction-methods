@@ -1,0 +1,34 @@
+function [yale]=parameter(X,Y,R)
+yale=cell(1,15);
+%X=normalize(X);
+for D=5:5:100
+    D
+[cOa,cAc,cRc,vOa,vAc,vRc]=five_fold(X,Y,R,D);
+OA(D,:)=cOa;
+VOA(D,:)=vOa;
+AA(D,:)=cAc;
+VAA(D,:)=vAc;
+RA(D,:)=cRc;
+VRA(D,:)=vRc;
+end
+yale{1,1}=OA;
+yale{1,2}=VOA;
+yale{1,3}=max(OA);
+a=find(OA==yale{1,3});
+yale{1,4}=VOA(a,:);
+yale{1,5}=a;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+yale{1,6}=AA;
+yale{1,7}=VAA;
+yale{1,8}=max(AA);
+b=find(AA==yale{1,8});
+yale{1,9}=VAA(b,:);
+yale{1,10}=b;
+%%%%%%%%%%%%%%%%%%%%%%
+yale{1,11}=RA;
+yale{1,12}=VRA;
+yale{1,13}=max(RA);
+c=find(RA==yale{1,13});
+yale{1,14}=VRA(c,:);
+yale{1,15}=c;
+end
